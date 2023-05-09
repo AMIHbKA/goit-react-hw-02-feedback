@@ -1,13 +1,11 @@
 import { PureComponent } from 'react';
-
+import PropTypes from 'prop-types';
 export class FeedbackOptions extends PureComponent {
   render() {
     const { options, onLeaveFeedback } = this.props;
-    console.log(options);
-    console.log('onLeaveFeedback', onLeaveFeedback);
+
     return (
       <>
-        <h2>Please leave feedback</h2>
         {Object.keys(options).map(option => (
           <button
             key={option}
@@ -22,3 +20,8 @@ export class FeedbackOptions extends PureComponent {
     );
   }
 }
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.objectOf(PropTypes.string).isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};

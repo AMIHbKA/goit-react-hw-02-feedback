@@ -1,6 +1,9 @@
 import { PureComponent } from 'react';
 import { Statistics } from './Statistics/Statistics';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Section } from './Section/Section';
+import { Notification } from './Notification/Notification';
+
 export class FeedbackWidget extends PureComponent {
   state = {
     good: 0,
@@ -16,12 +19,11 @@ export class FeedbackWidget extends PureComponent {
     const { good } = this.state;
     const total = this.feedbackTotalCount();
 
-    return total ? ((good * 100) / this.feedbackTotalCount()).toFixed(0) : 0;
+    return total ? Math.round((good * 100) / this.feedbackTotalCount()) : 0;
   };
 
   feedbackButtonClickHandler = event => {
     const feedbackType = event.target.name;
-    console.log('feedbackType', feedbackType);
     this.setState(prevState => ({
       [feedbackType]: prevState[feedbackType] + 1,
     }));
@@ -39,17 +41,25 @@ export class FeedbackWidget extends PureComponent {
 
     return (
       <>
-        <FeedbackOptions
-          options={options}
-          onLeaveFeedback={this.feedbackButtonClickHandler}
-        />
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={total}
-          positivePercentage={positivePercentage}
-        />
+        <Section title={'Please leave feedback'}>
+          <FeedbackOptions
+            options={options}
+            onLeaveFeedback={this.feedbackButtonClickHandler}
+          />
+        </Section>
+        <Section title={'Statistics'}>
+          {total ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={positivePercentage}
+            />
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
+        </Section>
       </>
     );
   }
