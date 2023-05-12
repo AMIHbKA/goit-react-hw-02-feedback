@@ -1,46 +1,24 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { getColorBasedOnName } from 'components/UI/Themes/theme';
 
 export const Button = styled.button`
   padding: 0.1em 0.3em;
   font-size: 1.2em;
   font-weight: 500;
   border-style: solid;
-  color: ${props => {
-    switch (props.name) {
-      case 'bad':
-        return 'red';
-      case 'good':
-        return 'green';
-      default:
-        return 'grey';
-    }
-  }};
-
-  border-color: ${props => {
-    switch (props.name) {
-      case 'bad':
-        return 'red';
-      case 'good':
-        return 'green';
-      default:
-        return 'grey';
-    }
-  }};
-
+  border-radius: 4px;
+  color: ${getColorBasedOnName};
+  border-color: ${getColorBasedOnName};
   cursor: pointer;
 
-  &:hover {
+  &:hover, :focus {
     color: #fff;
-    background-color: ${props => {
-      switch (props.name) {
-        case 'bad':
-          return 'red';
-        case 'good':
-          return 'green';
-        default:
-          return 'grey';
-      }
-    }};
+    box-shadow: 0 2px 4px ${getColorBasedOnName};
+    background-color: ${getColorBasedOnName};
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
 
