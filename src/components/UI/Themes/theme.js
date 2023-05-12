@@ -1,5 +1,4 @@
 export const getColorBasedOnName = props => {
-  console.log(props);
   if (props.name === 'bad') {
     return props.theme.colors.bad;
   } else if (props.name === 'good') {

@@ -4,17 +4,12 @@ import 'modern-normalize';
 export const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
-  font-family: Roboto, sans-serif;
+    sans-serif;
+  ${'' /* font-family: Roboto, sans-serif; */}
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-@font-face {
-  font-family: Roboto;
-  src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 }
 
 code {
